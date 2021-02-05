@@ -1,23 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { addNote } from '../reducers/anecdoteReducer';
-import {
-  notificationAddNote,
-  notificationHide
-} from '../reducers/notificationReducer';
-
+import { notificationAddNote } from '../reducers/notificationReducer';
 import { createAnecdote } from '../services/anecdoteService';
+import { connect } from 'react-redux';
 
-function AnecdoteForm() {
-  const dispatch = useDispatch();
-
+function AnecdoteForm(props) {
   const newNote = e => {
     e.preventDefault();
     const content = e.target.note.value;
     e.target.note.value = '';
     const anecdote = createAnecdote(content);
-    dispatch(addNote(anecdote));
-    dispatch(notificationAddNote(content, 5000));
+    props.addNote(anecdote);
+    props.notificationAddNote(content, 5000);
   };
 
   return (
@@ -33,4 +27,8 @@ function AnecdoteForm() {
   );
 }
 
-export default AnecdoteForm;
+const mapDispatchToProps = { addNote, notificationAddNote };
+
+const ConnectedAnecdoteForm = connect(null, mapDispatchToProps)(AnecdoteForm);
+
+export default ConnectedAnecdoteForm;
