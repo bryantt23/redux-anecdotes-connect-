@@ -1,5 +1,4 @@
 const initialState = { input: '' };
-console.log(initialState);
 
 export const updateFilter = input => {
   return {

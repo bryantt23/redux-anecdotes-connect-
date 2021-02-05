@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 function AnecdoteList(props) {
   const vote = anecdote => {
     props.anecdoteVote(anecdote);
-    props.notificationAddVote(anecdote.content, 3);
+    props.notificationAddVote(anecdote.content, 5);
   };
 
   let sortedAnecdotes = props.anecdotes
