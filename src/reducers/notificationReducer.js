@@ -1,5 +1,6 @@
 const initialState = { show: false, message: '' };
 
+// https://stackoverflow.com/questions/38734702/javascript-handle-multiple-instances-of-settimeout
 let timeoutId;
 export const notificationAddVote = (content, timeout) => {
   return async dispatch => {
@@ -7,7 +8,6 @@ export const notificationAddVote = (content, timeout) => {
       type: 'ADD_VOTE_NOTIFICATION',
       payload: content
     });
-    console.log(timeoutId);
     if (timeoutId) {
       clearTimeout(timeoutId);
     }
